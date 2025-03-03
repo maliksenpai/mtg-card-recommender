@@ -1,0 +1,20 @@
+export const labels = {
+  title: "Card Recommender MTG",
+  subTitle: "Find your best cards for your commander deck (with filters)",
+  filterLabel: "Filter",
+  commanderInput: "Commander Name",
+  selectedCommander: "Selected Commander:",
+  loadMore: "Load More",
+  CardType: "Card Type",
+  CardColor: "Card Color",
+  CardAggresive: "Card Aggresive",
+  CostLessThen: "Cost Less Than",
+  CostMoreThen: "Cost More Than",
+  Colors: {
+    W: "White",
+    U: "Blue",
+    B: "Black",
+    R: "Red",
+    G: "Green",
+  },
+};
