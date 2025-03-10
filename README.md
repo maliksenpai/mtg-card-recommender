@@ -1,48 +1,84 @@
-# Svelte + TS + Vite
+# Card Recommender MTG
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+This project is a card recommender application for building a commander deck for Magic: The Gathering. It is developed using Svelte, TypeScript, and Vite.
 
-## Recommended IDE Setup
+## Installation
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+After cloning the project, run the following command to install the dependencies:
 
-## Need an official Svelte framework?
+npm install
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+## Starting the Development Server
 
-## Technical considerations
+To start the development server, run the following command:
 
-**Why use this over SvelteKit?**
+npm run dev
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+This command will run the project on a local server and automatically open it in your browser.
 
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+## Configuration
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+The project stores API keys and other configuration settings in the .env file. You can use the .env.development file to set configuration settings for the development environment.
 
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
+## Project Structure
 
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
+The project has the following file structure:
 
-**Why include `.vscode/extensions.json`?**
+.env
+.env.development
+.gitignore
+.vscode/
+    extensions.json
+index.html
+LICENSE
+package.json
+postcss.config.js
+public/
+    chevron-down.svg
+    loading.svg
+README.md
+src/
+    ai/
+        groq.ts
+    app.css
+    App.svelte
+    components/
+        Autocomplete.svelte
+        Filter.svelte
+        FilterCards.svelte
+        ListCards.svelte
+        SelectedCommander.svelte
+    icons/
+    labels.ts
+    main.ts
+    stores/
+        common.ts
+    types/
+    utils/
+    vite-env.d.ts
+svelte.config.js
+tailwind.config.ts
+tsconfig.app.json
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
 
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
+## Important Files and Folders
 
-**Why enable `allowJs` in the TS template?**
+- src/ai/groq.ts: Interacts with the Groq API.
+- src/components: Contains the Svelte components of the application.
+- src/utils/fetch.ts: Contains helper functions for API requests.
+- src/utils/debounce.ts: Contains the debounce function.
+- src/types/commander.ts: Contains TypeScript type definitions.
+- src/stores/common.ts: Contains Svelte stores.
+- tailwind.config.ts: Tailwind CSS configuration file.
+- svelte.config.js: Svelte configuration file.
+- vite.config.ts: Vite configuration file.
 
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
+## Usage
 
-**Why is HMR not preserving my local component state?**
+The application allows you to get card recommendations by entering a commander name and using filters. Filters include card type, card color, and aggressiveness type.
 
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
+## License
 
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
-```
-
+This project is licensed under the Apache License 2.0.
