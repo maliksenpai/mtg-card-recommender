@@ -25,7 +25,7 @@
           chatCompletion: extra ? chatCompletion.map((item) => item.name) : [],
         }),
       });
-      if (groqData.data) {
+      if (groqData.data && groqData.data.length > 0) {
         fetchApi<{ data: MagicCard[] }>(`cards/collection`, {
           body: JSON.stringify({
             identifiers: groqData.data,
@@ -70,6 +70,8 @@
           .finally(() => {
             loading = false;
           });
+      } else {
+        loading = false;
       }
     }
   };

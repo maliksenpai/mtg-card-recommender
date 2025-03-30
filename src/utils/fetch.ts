@@ -2,7 +2,7 @@ export const fetchApi = async <T>(
   url: string,
   config: FetchApiConfig
 ): Promise<T> => {
-  let generateUrl = `${config.baseurl}${url}`;
+  let generateUrl = config.baseurl ? `${config.baseurl}${url}` : url;
   if (config.query) {
     generateUrl = `${generateUrl}?${new URLSearchParams(
       config.query
@@ -22,7 +22,7 @@ export const fetchApi = async <T>(
 
 export enum BaseUrl {
   Scryfall = "https://api.scryfall.com/",
-  Groq = " https://mtg-card-recommender-backend.netlify.app/",
+  Groq = "https://mtg-card-recommender-backend.netlify.app/",
 }
 
 export type FetchApiConfig = {
