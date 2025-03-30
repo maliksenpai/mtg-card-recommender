@@ -3,7 +3,7 @@
   import { selectedCommander } from "../stores/common";
   import type { MagicCard } from "../types/commander";
   import { debounce } from "../utils/debounce";
-  import { fetchApi } from "../utils/fetch";
+  import { BaseUrl, fetchApi } from "../utils/fetch";
 
   let query = "";
   let results: MagicCard[] = [];
@@ -17,6 +17,7 @@
         query: { q: query },
         cardType: "legendary creature",
         method: "GET",
+        baseurl: BaseUrl.Scryfall,
       });
       results = response.data;
       loading = false;
