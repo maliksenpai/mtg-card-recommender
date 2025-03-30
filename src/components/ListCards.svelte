@@ -3,7 +3,7 @@
   import { getGroqChatResponse } from "../ai/groq";
   import { filterType, selectedCommander } from "../stores/common";
   import type { FilterType, MagicCard } from "../types/commander";
-  import { fetchApi } from "../utils/fetch";
+  import { BaseUrl, fetchApi } from "../utils/fetch";
   import { labels } from "../labels";
 
   let chatCompletion: MagicCard[] = [];
@@ -16,12 +16,21 @@
   ) => {
     if (commander) {
       loading = true;
-      const groqData = await getGroqChatResponse(commander, filter);
-      if (groqData) {
+      const groqData = await fetchApi<{ data: MagicCard[] }>(`cardAi`, {
+        method: "POST",
+        baseurl: BaseUrl.Groq,
+        body: JSON.stringify({
+          commander: commander,
+          filter: filter,
+          chatCompletion: extra ? chatCompletion.map((item) => item.name) : [],
+        }),
+      });
+      if (groqData.data) {
         fetchApi<{ data: MagicCard[] }>(`cards/collection`, {
           body: JSON.stringify({
-            identifiers: groqData,
+            identifiers: groqData.data,
           }),
+          baseurl: BaseUrl.Scryfall,
           method: "POST",
         })
           .then((value) => {
@@ -43,10 +52,9 @@
                 return true;
               });
             }
-            console.log(mtgCards);
             mtgCards = mtgCards.map((item) => {
-              const selectedItem = groqData.find(
-                (groqItem) => groqItem.name === item.name
+              const selectedItem = groqData.data.find(
+                (groqItem: MagicCard) => groqItem.name === item.name
               );
               return {
                 ...item,
@@ -80,7 +88,7 @@
   <p class="text-center text-2xl font-bold">Results</p>
 {/if}
 
-<div class="pt-20 flex items-center flex-wrap">
+<div class="pt-20 flex items-start flex-wrap">
   {#each chatCompletion as completion}
     <div class="flex items-center flex-col justify-start w-1/3 py-4">
       <img
