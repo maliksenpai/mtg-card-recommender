@@ -6,7 +6,13 @@
 
   let selectedCardType = $state("");
   let selectedColors = $state<string[]>([]);
-  let selectableColors = $state<string[]>(["W", "U", "B", "R", "G"]);
+  let selectableColors = $state<(keyof typeof labels.Colors)[]>([
+    "W",
+    "U",
+    "B",
+    "R",
+    "G",
+  ]);
   let selectedAggresive = $state<AggresiveType>();
 
   const colorUrl = "https://svgs.scryfall.io/card-symbols/";
@@ -40,7 +46,7 @@
 
   selectedCommander.subscribe((value) => {
     if (value) {
-      selectableColors = value.colors;
+      selectableColors = value.colors as ("W" | "U" | "B" | "R" | "G")[];
       selectedColors = [];
     }
   });
@@ -61,8 +67,8 @@
     </select>
   </div>
   <div class="filter-row">
-    <label class="flex-2">{labels.CardColor}</label>
-    <div class="flex flex-row flex-8 md:mt-2 flex-wrap">
+    <label class="flex-2" for="cardColor">{labels.CardColor}</label>
+    <div id="cardColor" class="flex flex-row flex-8 md:mt-2 flex-wrap">
       {#each selectableColors as color}
         <div class="flex items-center mb-2 mx-2">
           <input
@@ -87,8 +93,8 @@
   </div>
 
   <div class="filter-row">
-    <label class="flex-2">{labels.CardAggresive}</label>
-    <div class="flex flex-row flex-8 md:mt-2 flex-wrap">
+    <label class="flex-2" for="cardAggresive">{labels.CardAggresive}</label>
+    <div id="cardAggresive" class="flex flex-row flex-8 md:mt-2 flex-wrap">
       {#each Object.values(AggresiveType) as type}
         <div class="flex items-center mb-2 mx-2">
           <input
