@@ -47,7 +47,7 @@
 
   {#if focused}
     <div
-      class="absolute top-20 w-[45%] max-h-52 overflow-auto bg-white shadow-lg"
+      class="absolute top-20 w-[90%] md:w-[45%] max-h-52 overflow-auto bg-white shadow-lg"
     >
       {#if loading}
         <div class="py-4">
