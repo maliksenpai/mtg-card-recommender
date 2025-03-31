@@ -1,4 +1,3 @@
-<!-- filepath: d:\muhendizz\mtg-card-recommender\public\robots.txt -->
 User-agent: *
 Allow: /
 Sitemap: https://maliksenpai.github.io/mtg-card-recommender/sitemap.xml
