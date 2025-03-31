@@ -11,6 +11,7 @@
         src={$selectedCommander.image_uris.large}
         alt="commander"
         class="h-[20.875rem] w-60"
+        loading="lazy"
       />
       <button
         class="absolute top-0 left-0 p-1 m-1 px-2 bg-slate-800 opacity-60 text-white rounded-full"

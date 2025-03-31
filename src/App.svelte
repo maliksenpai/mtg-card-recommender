@@ -8,8 +8,10 @@
 
 <main class="container min-w-[100vw] min-h-[100vh] bg-slate-100">
   <div class="text-center">
-    <h1 class="gradient-text text-6xl font-boldt">{labels.title}</h1>
-    <h3 class="mt-4 text-xl underline text-gray-500">{labels.subTitle}</h3>
+    <h1 class="gradient-text text-4xl font-bold md:text-6xl">{labels.title}</h1>
+    <h3 class="mt-4 text-md md:text-xl underline text-gray-500">
+      {labels.subTitle}
+    </h3>
   </div>
   <div class="flex flex-col items-center min-h-[inherit] mt-10">
     <SelectedCommander />

@@ -38,7 +38,7 @@
 <div class="relative w-full flex justify-center items-center pb-10">
   <input
     type="text"
-    class="w-[45%] p-2 mt-10 bg-white"
+    class="w-[90%] md:w-[45%] p-2 mt-10 bg-white"
     placeholder={labels.commanderInput}
     bind:value={query}
     on:focus={() => (focused = true)}
@@ -51,7 +51,12 @@
     >
       {#if loading}
         <div class="py-4">
-          <img src="/loading.svg" class="w-6 h-6 m-auto" alt="loading" />
+          <img
+            src={`${import.meta.env.BASE_URL}/loading.svg`}
+            class="w-6 h-6 m-auto"
+            alt="loading"
+            loading="lazy"
+          />
         </div>
       {:else}
         <ul>
