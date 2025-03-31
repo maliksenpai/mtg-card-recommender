@@ -92,11 +92,12 @@
 
 <div class="pt-20 flex items-start flex-wrap">
   {#each chatCompletion as completion}
-    <div class="flex items-center flex-col justify-start w-1/3 py-4">
+    <div class="flex items-center flex-col justify-start w-full md:w-1/3 py-4">
       <img
         src={completion.image_uris.large}
         class="h-[20.875rem] w-60"
         alt={completion.name}
+        loading="lazy"
       />
       <p class="text-xl font-bold">{completion.name}</p>
       <p class="text-sm text-gray-600 w-60">{completion.explanation}</p>
@@ -105,7 +106,12 @@
 </div>
 {#if loading}
   <div class="py-4">
-    <img src="/loading.svg" class="w-6 h-6 m-auto" alt="loading" />
+    <img
+      src={`${import.meta.env.BASE_URL}/loading.svg`}
+      class="w-6 h-6 m-auto"
+      alt="loading"
+      loading="lazy"
+    />
   </div>
 {/if}
 {#if chatCompletion.length > 1}

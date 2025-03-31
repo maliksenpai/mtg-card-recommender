@@ -74,9 +74,10 @@
           />
           <label for={color} class="ml-2 flex item-center justify-center gap-1">
             <img
-              src={`${colorUrl}${color}.svg`}
+              src={`${import.meta.env.BASE_URL}/${colorUrl}${color}.svg`}
               alt={color}
               class="w-4 h-4 mt-1"
+              loading="lazy"
             />
             {labels.Colors[color]}
           </label>
