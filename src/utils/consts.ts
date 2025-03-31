@@ -1,3 +1,5 @@
+import type { ManaColor } from "../types/commander";
+
 export const CARD_TYPES = [
   "Artifact",
   "Creature",
@@ -7,3 +9,5 @@ export const CARD_TYPES = [
   "Planeswalker",
   "Sorcery",
 ];
+
+export const COLORS: ManaColor[] = ["W", "U", "B", "R", "G"];

@@ -34,3 +34,5 @@ export enum AggresiveType {
   Combo = "Combo",
   MidRange = "Mid Range",
 }
+
+export type ManaColor = "W" | "U" | "B" | "R" | "G";

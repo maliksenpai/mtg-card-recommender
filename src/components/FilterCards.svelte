@@ -1,18 +1,11 @@
 <script lang="ts">
   import { labels } from "../labels";
   import { filterType, selectedCommander } from "../stores/common";
-  import { AggresiveType } from "../types/commander";
-  import { CARD_TYPES } from "../utils/consts";
+  import { AggresiveType, type ManaColor } from "../types/commander";
+  import { CARD_TYPES, COLORS } from "../utils/consts";
 
   let selectedCardType = $state("");
-  let selectedColors = $state<string[]>([]);
-  let selectableColors = $state<(keyof typeof labels.Colors)[]>([
-    "W",
-    "U",
-    "B",
-    "R",
-    "G",
-  ]);
+  let selectableColors: ManaColor[] = $state(COLORS);
   let selectedAggresive = $state<AggresiveType>();
 
   const colorUrl = "https://svgs.scryfall.io/card-symbols/";
@@ -46,7 +39,7 @@
 
   selectedCommander.subscribe((value) => {
     if (value) {
-      selectableColors = value.colors as ("W" | "U" | "B" | "R" | "G")[];
+      selectableColors = value.colors as ManaColor[];
       selectedColors = [];
     }
   });
