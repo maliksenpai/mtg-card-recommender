@@ -47,7 +47,7 @@
 </script>
 
 <div class="flex flex-col gap-4 pt-2">
-  <div class="flex items-center ml-4 gap-10">
+  <div class="filter-row">
     <label class="flex-2" for="cardType">{labels.CardType}</label>
     <select
       id="cardType"
@@ -60,9 +60,9 @@
       {/each}
     </select>
   </div>
-  <div class="flex items-center ml-4 gap-10">
+  <div class="filter-row">
     <label class="flex-2">{labels.CardColor}</label>
-    <div class="flex flex-row flex-8 mt-2">
+    <div class="flex flex-row flex-8 md:mt-2 flex-wrap">
       {#each selectableColors as color}
         <div class="flex items-center mb-2 mx-2">
           <input
@@ -74,7 +74,7 @@
           />
           <label for={color} class="ml-2 flex item-center justify-center gap-1">
             <img
-              src={`${import.meta.env.BASE_URL}/${colorUrl}${color}.svg`}
+              src={`${colorUrl}${color}.svg`}
               alt={color}
               class="w-4 h-4 mt-1"
               loading="lazy"
@@ -86,9 +86,9 @@
     </div>
   </div>
 
-  <div class="flex items-center ml-4 gap-10">
+  <div class="filter-row">
     <label class="flex-2">{labels.CardAggresive}</label>
-    <div class="flex flex-row flex-8 mt-2">
+    <div class="flex flex-row flex-8 md:mt-2 flex-wrap">
       {#each Object.values(AggresiveType) as type}
         <div class="flex items-center mb-2 mx-2">
           <input
@@ -112,5 +112,8 @@
   input[type="checkbox"] {
     width: 2rem;
     height: 2rem;
+  }
+  .filter-row {
+    @apply flex ml-4 gap-4 md:gap-10 flex-col items-start md:flex-row md:items-center;
   }
 </style>
